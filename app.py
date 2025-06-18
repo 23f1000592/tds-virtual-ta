@@ -17,6 +17,16 @@ import uvicorn
 import traceback
 from dotenv import load_dotenv
 
+import zipfile
+
+# Auto-unzip if not already unzipped
+if not os.path.exists("knowledge_base.db"):
+    print("🟡 Unzipping database...")
+    with zipfile.ZipFile("knowledge_base.db.zip", 'r') as zip_ref:
+        zip_ref.extractall(".")
+    print("✅ Database extracted!")
+
+
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
