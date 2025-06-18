@@ -693,6 +693,9 @@ async def query_knowledge_base(request: QueryRequest):
             status_code=500,
             content={"error": error_msg}
         )
+@app.get("/")
+async def root():
+    return {"message": "✅ API is live!"}
 
 # Health check endpoint
 @app.get("/health")
